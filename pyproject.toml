@@ -1,0 +1,47 @@
+[project]
+name = "splatsim"
+version = "0.1.0"
+description = "Replay a drone's flight log inside a Gaussian splat of the place"
+readme = "README.md"
+authors = [
+    { name = "Ethan Boos", email = "moosboos1@gmail.com" }
+]
+requires-python = "==3.12.*"
+# Reading a flight log. Training and replay run in 3DGRUT's own environment,
+# which this one does not install (README, "Setup").
+dependencies = [
+    "mcap>=1.2",
+    "mcap-protobuf-support>=0.5",
+    "numpy",
+    "opencv-python-headless",
+]
+
+[project.optional-dependencies]
+# splatsim.refine: COLMAP, CPU build.
+sfm = ["pycolmap>=4.2"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.8",
+    "pre-commit>=4",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.32,<0.12.0"]
+build-backend = "uv_build"
+
+# --- tooling ----------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# Runs under 3DGRUT's Python, where threedgrut is a third-party package.
+"src/splatsim/replay.py" = ["I001"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
