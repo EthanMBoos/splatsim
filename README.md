@@ -113,7 +113,7 @@ src/splatsim/
   refine.py        # step 2: COLMAP with the log's poses as priors
   replay.py        # step 4: runs under 3DGRUT's Python, imports no splatsim
 scripts/pace.sh    # every step on PACE ICE
-docs/              # TRACKS.md, RESEARCH.md, PACE.md, TODO.md
+docs/              # TRACKS.md, RESEARCH.md, IDEAS.md, PACE.md, TODO.md
 ```
 
 ## Conventions
